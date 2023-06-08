@@ -13,6 +13,16 @@ services:
     configs:
       - source: nginx
         target: /etc/nginx/nginx.conf
+    secrets:
+      - source: cakey
+        target: /etc/nginx/certs/example.cc.key
+        mode: 0440
+      - source: cacer
+        target: /etc/nginx/certs/example.cc.cer
+        mode: 0440
+      - source: registry
+        target: /etc/nginx/registry.htpasswd
+        mode: 0777
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
@@ -22,3 +32,11 @@ services:
 configs:
   nginx:
     file: ./nginx.conf
+
+secrets:
+  cakey:
+    file: ./acme.sh/certs/*.example.cc.key
+  cacer:
+    file: ./acme.sh/certs/fullchain.cer
+  registry:
+    file: ./registry.htpasswd
