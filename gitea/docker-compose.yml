@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  gitea:
+    image: gitea/gitea:1.18.5
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+      - APP_NAME=Where the world builds software
+      - RUN_MODE=prod
+      - RUN_USER=git
+      - DISABLE_SSH=true
+      - DOMAIN=git.example.cc
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /data/gitea:/data
+    networks:
+      - host
+
+networks:
+  host:
+    external: true
+    name: "host"
+
