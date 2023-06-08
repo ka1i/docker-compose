@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+ postgres-server:
+  image: timescale/timescaledb:2.10.3-pg15
+  volumes:
+   - /data/timescaledb:/var/lib/postgresql/data:rw
+  env_file:
+   - ./env_vars/.env_db_pgsql
+  secrets:
+   - POSTGRES_USER
+   - POSTGRES_PASSWORD
+  networks:
+   - host
+
+networks:
+  host:
+    external: true
+    name: "host"
+
+secrets:
+  POSTGRES_USER:
+    file: ./env_vars/.POSTGRES_USER
+  POSTGRES_PASSWORD:
+    file: ./env_vars/.POSTGRES_PASSWORD
+
