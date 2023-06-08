@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  cadvisor:
+    image: ka1i137/google-cadvisor-arm64:v0.47.0
+    user: root
+    ports:
+      - "18080:8080"
+    volumes:
+      - /sys:/sys:ro
+      - /var/run:/var/run:rw
+      - /:/rootfs:ro
+      - /var/lib/docker:/var/lib/docker:ro
+      - /etc/localtime:/etc/localtime
+      - /dev/kmsg:/dev/kmsg:ro
+      - /etc/machine-id:/etc/machine-id:ro
+
