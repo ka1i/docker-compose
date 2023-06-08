@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  server:
+    image: prom/prometheus:v2.40.7
+    command: --config.file=/etc/prometheus/prometheus.yml --enable-feature=exemplar-storage
+    user: root
+    ports:
+      - "9090:9090"
+    volumes:
+       - /data/prometheus:/prometheus
+    configs:
+      - source: prometheus
+        target: /etc/prometheus/prometheus.yml
+
+configs:
+  prometheus:
+    file: ./prometheus.yml
