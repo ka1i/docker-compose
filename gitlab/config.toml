@@ -1,0 +1,9 @@
+[session_server]
+  listen_address = "[::]:8081"
+  advertise_address = "gitlab-runner:8081"
+  session_timeout = 1800
+
+[[runners]]
+  name = "runner"
+  url = "http://git.example.cc/"
+  token = "password token"
