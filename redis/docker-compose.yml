@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+ server:
+  image: redis:6.2.12
+  command: redis-server --appendonly yes --requirepass password
+  volumes:
+   - /data/redis:/data:rw
+   - /etc/timezone:/etc/timezone:ro
+  networks:
+    - host
+
+networks:
+  host:
+    external: true
+    name: "host"
+
