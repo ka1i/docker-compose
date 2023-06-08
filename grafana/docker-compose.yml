@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  server:
+    image: grafana/grafana:9.5.1
+    user: root
+    networks:
+      - host
+    volumes:
+      - /data/grafana:/var/lib/grafana
+    configs:
+      - source: grafana
+        target: /etc/grafana/grafana.ini
+
+networks:
+  host:
+    external: true
+    name: "host"
+
+configs:
+  grafana:
+    file: ./grafana.ini
