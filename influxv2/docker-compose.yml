@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  influxdb:
+    image: influxdb:2.6.1-alpine
+    env_file:
+      - influxv2.env
+    volumes:
+      - /data/influxdb:/var/lib/influxdb2:rw
+    networks:
+     - host
+
+networks:
+  host:
+    external: true
+    name: "host"
+
